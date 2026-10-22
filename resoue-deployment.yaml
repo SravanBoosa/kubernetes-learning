@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource-deploy-practice
+spec:
+ replicas: 3
+ selector:
+   matchLabels: 
+     name: resource-deploy-practice  
+ template:
+   metadata: 
+     labels:
+       name: resource-deploy-practice
+   spec:    
+     containers:
+      - name: nginx
+        image: nginx:stable
+        resources:
+          requests:  
+            cpu: "200m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"    
