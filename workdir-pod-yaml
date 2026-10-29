@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: workdir-pod
+spec:
+  containers:
+    - name: nginx-cont
+      image: nginx:latest
+      workingDir: /tmp      #sets the container's working directory to /tmp.
+      command: ["sh", "-c"]
+      args:
+        - pwd              # prints the current working directory.
+                           #After pwd finishes, the shell exits and the container stops. 

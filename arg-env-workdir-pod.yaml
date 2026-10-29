@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: arg-env-workdir-pod
+  labels:
+    app: arg-env-workdir-pod
+spec:
+  containers:
+   - name: apache-cont
+     image: httpd:latest
+     workingDir: /tmp
+     command: ["sh","-c"]  
+     args:
+       - |
+         echo "Welcome to Kubernetes"
+         touch /tmp/1.txt
+         echo "this text file inside pod" > /tmp/1.txt
+         echo "App_Name=$App_name"
+         echo "App_Env=$App-Env"
+         pwd
+         sleep 300
+     env:
+       - name: App_Name
+         value: "practicing arg-env-workdir-in-one-pod"
+       - name: App_Env
+         value: "Deployment"
+
