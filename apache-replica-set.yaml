@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: apache-replica-set
+  labels:
+    app: apache
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: apache-replica-set-app
+  template:
+    metadata:
+      labels:
+        name: apache-replica-set-app
+    spec: 
+     containers:
+      - name: apache-container
+        image: httpd:latest
+        workingDir: /tmp  
+        ports:
+         - containerPort: 80
+        command: ["sh","-c"]  
+        args:
+          - |
+            touch /tmp/test.txt
+            echo "this a text file runninginside kubernetes pods"
+            cat /tmp/test.txt
+            pwd
+            echo "APP_Name=$APP_Name"
+            sleep 300
+        env:
+          - name: APP_Name
+            value: "Replica-set"
+
+    
