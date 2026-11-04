@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev-pod 
+  labels:
+   namespace: dev-pod
+   name: dev
+

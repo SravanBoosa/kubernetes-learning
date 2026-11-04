@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset-agent
+  namespace: dev-pod  
+  labels:
+    app: daemonset-agent
+spec:
+ selector:
+   matchLabels:
+     app: daemonset-agent
+ template:
+   metadata:
+     name: daemonset-pod
+     labels:
+      app: daemonset-agent
+   spec:
+    containers:
+     - name: nginx-cont
+       image: nginx
+       ports:
+        - containerPort: 80
+
+     

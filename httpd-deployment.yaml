@@ -9,7 +9,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
-      maxSurge: 1  
+      maxSurge: 1
   replicas: 2
   template:
     metadata:
@@ -19,7 +19,7 @@ spec:
     spec:
       containers: 
        - name: httpd-frontend
-         image: httpd:2.4-alpine
+         image: httpd:latest
   selector:
     matchLabels:
       type: front-end
